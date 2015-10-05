@@ -1,6 +1,6 @@
 <!-- Appears on every page -->
 <template name="main">
-	<nav class="teal accent-4" role="navigation">
+	<nav class="blue accent-3" role="navigation">
 		<div class="nav-wrapper">
 			<ul>
 				<li><a href="{{pathFor route='page1'}}"><i class="mdi-action-home"></i></a></li>
@@ -23,7 +23,7 @@
 			{{> section1}}
 			{{> section2}}
 		
-			<a href="{{pathFor route='page2'}}" class="waves-effect waves-light btn">Go to next step</a>
+			<a href="{{pathFor route='page2'}}" class="waves-effect waves-light btn blue accent-3" id="nextpage">Go to next step</a>
 		</form>
 		<br /><br />
 	</div>
@@ -31,8 +31,18 @@
 
 <template name="page2">
 	<div class="container">
-		{{> confirmation}}
-		<button class="btn waves-effect waves-light btn-large" type="submit" name="submit">Submit Proxy</button>
+			{{> confirmation}}
+
+		<div class="row">
+			<div class="input-field col s5">
+				<a href="{{pathFor route='page1'}}" class="waves-effect waves-light red accent-4 btn">Go Back</a>
+			</div>
+
+			<div class="input-field col s7">
+			
+				<button class="waves-effect waves-light blue accent-3 btn" type="submit" name="submit" id="submit">Submit Proxy</button>
+			</div>
+		</div>
 	</div>
 </template>
 
@@ -40,7 +50,7 @@
 	<h5>You Are The Registered Owner(s) Of</h5>
 
 	<div class="row">
-		<div class="input-field col s6">
+		<div class="input-field col s12">
 			<select name="address">
 				<option value="" selected>Select Address</option>
 				<option value="11 Niagara Street">11 Niagara Street</option>
@@ -52,9 +62,9 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="input-field col s6">
-			<input id="address" name="address" type="text" class="validate">
-			<label class="inactive" for="address">Townhouse Unit No.</label>
+		<div class="input-field col s12">
+			<input id="address" name="unitnum" type="text" class="validate">
+			<label class="inactive" for="unitnum">Townhouse Unit No.</label>
 		</div>
 	</div>
 </template>
@@ -63,7 +73,7 @@
 	<h5>Election of Owner Occupied Director Position on the Board</h5>
 
 	<div class="row">
-		<div class="input-field col s6">
+		<div class="input-field col s12">
 			<input id="candidate" name="candidate" type="text" class="validate">
 			<label class="inactive" for="candidate">Enter the name of the candidate you wish to vote for</label>
 		</div>
@@ -73,7 +83,7 @@
 	<p>Optionally, if you wish to appoint someone other than <u>Ed Bezeau, President of MTCC 1371</u>, to be your Proxy Holder, please enter their name below.</p>
 
 	<div class="row">
-		<div class="input-field col s6">
+		<div class="input-field col s12">
 			<input id="proxyname" name="proxyname" type="text" class="validate">
 			<label class="inactive" for="proxyname">Name of proxy</label>
 		</div>
@@ -81,18 +91,23 @@
 </template>
 
 <template name="confirmation">
-	<h3>Review Your Proxy</h3>
-	<p>MTCC 1371 Annual General Meeting
+	<p>
+		<center>
+			<h3>Review Your Proxy</h3>
+			<p>MTCC 1371 Annual General Meeting</p>
+		</center>
+
+		<div class="divider"></div><br />
+		
+		I am (we are) the registered owner(s) / mortgagee(s) of <strong><u>{{address}}</u></strong>, unit number <strong><u>{{unitnum}}</u></strong>.
 		<br /><br />
-		I am (we are) the registered owner(s) / mortgagee(s) of ___ADDRESS___, unit number __UNIT__.
-		<br /><br />
-		I (we) appoint ___PROXY HOLDER______, if present, or whom failing, Ed Bezeau, President to be Proxy Holder and to attend and vote on my (our) behalf with power of substitution at the meeting of owners to be held on October 20th, 2015 and at any adjournments of the meeting.
+		I (we) appoint <strong><u>{{proxyname}}</u></strong>, if present, or whom failing, Ed Bezeau, President to be Proxy Holder and to attend and vote on my (our) behalf with power of substitution at the meeting of owners to be held on October 20th, 2015 and at any adjournments of the meeting.
 		<br /><br />
 		The Proxy Holder may vote on my (our) behalf in respect of all matters that may come before the Meeting as I (we) could do if personally present at the meeting, subject to the following instructions:
 		<br /><br />
 		I (we) nominate and vote for the candidate I (we) have set out below for the position of Owner Occupied Elected Director on the Board for which all owners may vote:
 		<br /><br />
-		___CANDIDATE NAME___
+		<i class="material-icons prefix">account_circle</i><strong><u>{{candidate}}</u></strong>
 		<br /><br />
 		I (We) revoke all proxies previously given.
 		<br />
@@ -114,6 +129,15 @@
 				<label for="email">Email</label>
 			</div>
 		</div>
+</template>
+
+<template name="success">
+	<div class="container">
+		<br /><br /><br /><br /><br />
+		<center><h4>Submission successful, thank you.</h4>
+		<a href="{{pathFor route='page1'}}" class="waves-effect waves-light blue accent-3 btn">Go Back</a>
+		</center>
+	</div>
 </template>
 
 
