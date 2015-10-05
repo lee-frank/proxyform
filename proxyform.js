@@ -16,7 +16,7 @@ if (Meteor.isClient) {
 		}
 	});
 
-	Template.navigation.events({
+	Template.main.events({
 	    'click .logout': function(event){
 	        event.preventDefault();
 	        Meteor.logout(); //logout function
