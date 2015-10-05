@@ -22,3 +22,5 @@ fourseven:scss
 poetic:materialize-scss
 iron:router
 ejson
+accounts-password
+accounts-ui

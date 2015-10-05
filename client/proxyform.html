@@ -1,15 +1,44 @@
+<head>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
 <!-- Appears on every page -->
 <template name="main">
 	<nav class="blue accent-3" role="navigation">
 		<div class="nav-wrapper">
 			<ul>
 				<li><a href="{{pathFor route='page1'}}"><i class="mdi-action-home"></i></a></li>
+				
+				<!--<li><a href="{{> loginButtons}}"></a></li> easy way to add accounts-->  
+				{{#if currentUser}}
+            		<li><a href="#" class="logout">Logout</a></li>	
+        		{{else}}
+        			<li><a href="{{pathFor route='login'}}">Admin login</a></li>
+        		{{/if}}
 			</ul>
 		</div>
 	</nav>
 	{{> yield}}
-
 </template>
+
+<template name="login">
+	<div class="container">
+	    <h2>Login</h2>
+	    <form class="login">
+	        <p>Username: <input type="email" name="email"></p>
+	        <p>Password: <input type="password" name="password"></p>
+	        <p><input class="waves-effect waves-light btn blue accent-3" type="submit" value="Login"></p>
+	    </form>
+    </div>
+</template>
+
+
+<template name="admin">
+	<div class="container">
+	<p>Welcome to the admin page</p>
+	</div>
+</template>
+
 
 <template name="page1">    
 	<div class="container">
@@ -22,7 +51,7 @@
 		<form class="col s12">
 			{{> section1}}
 			{{> section2}}
-		
+
 			<a href="{{pathFor route='page2'}}" class="waves-effect waves-light btn blue accent-3" id="nextpage">Go to next step</a>
 		</form>
 		<br /><br />
@@ -31,7 +60,7 @@
 
 <template name="page2">
 	<div class="container">
-			{{> confirmation}}
+		{{> confirmation}}
 
 		<div class="row">
 			<div class="input-field col s5">
@@ -39,7 +68,7 @@
 			</div>
 
 			<div class="input-field col s7">
-			
+
 				<button class="waves-effect waves-light blue accent-3 btn" type="submit" name="submit" id="submit">Submit Proxy</button>
 			</div>
 		</div>
@@ -117,28 +146,30 @@
 		<h5>I Acknowledge the Information Above To Be Correct.</h5>
 	</p>
 
-		<div class="row">
-			<div class="input-field col s12">
-				<input id="owner_name" name="owner_name" type="text" class="validate">
-				<label class="inactive" for="owner_name">Your Name</label>
-			</div>
+	<div class="row">
+		<div class="input-field col s12">
+			<input id="owner_name" name="owner_name" type="text" class="validate">
+			<label class="inactive" for="owner_name">Your Name</label>
 		</div>
-		<div class="row">
-			<div class="input-field col s12">
-				<input id="email" type="email" name="email" class="validate">
-				<label for="email">Email</label>
-			</div>
+	</div>
+	<div class="row">
+		<div class="input-field col s12">
+			<input id="email" type="email" name="email" class="validate">
+			<label for="email">Email</label>
 		</div>
+	</div>
 </template>
 
 <template name="success">
 	<div class="container">
 		<br /><br /><br /><br /><br />
 		<center><h4>Submission successful, thank you.</h4>
-		<a href="{{pathFor route='page1'}}" class="waves-effect waves-light blue accent-3 btn">Go Back</a>
+			<a href="{{pathFor route='page1'}}" class="waves-effect waves-light blue accent-3 btn">Go Back</a>
 		</center>
 	</div>
 </template>
+
+
 
 
 
