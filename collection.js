@@ -1,0 +1,1 @@
+proxyEntry = new Meteor.Collection('proxyEntry');
